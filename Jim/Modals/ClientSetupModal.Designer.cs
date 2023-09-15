@@ -153,7 +153,7 @@ namespace Jim.Modals
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSave),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonDelete)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonDelete, true)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -175,7 +175,6 @@ namespace Jim.Modals
             this.barButtonDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonDelete.ImageOptions.Image")));
             this.barButtonDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonDelete.ImageOptions.LargeImage")));
             this.barButtonDelete.Name = "barButtonDelete";
-            this.barButtonDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDelete_ItemClick);
             // 
             // barDockControlTop

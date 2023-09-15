@@ -91,7 +91,7 @@ namespace Jim.Modals
 
         private void barButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult res = XtraMessageBox.Show(String.Format("Είστε σίγουρος οτι θέλετε να διαγραφεί;"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult res = XtraMessageBox.Show(String.Format("Σίγουρα θέλετε να διαγραφεί;"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (res == DialogResult.Yes)
             {
                 using (var repository = new ClientRepository())

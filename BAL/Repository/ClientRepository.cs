@@ -108,6 +108,26 @@ namespace BAL.Repository
             using (var context = new Context())
             {
                 var entity = context.Client.Where(x => x.ClientID == clientID).FirstOrDefault();
+                var orders = context.Order.Where(x => x.ClientID == clientID).ToList();
+
+                foreach (var order in orders)
+                {
+                    var details = context.OrderDetails.Where(x => x.OrderID == order.OrderID).ToList();
+                    foreach (var detail in details)
+                    {
+                        var detailsToDelete = context.OrderDetails.Where(x => x.OrderDetailsID == detail.OrderDetailsID).FirstOrDefault();
+                        var inventoryItem = context.Inventory.Where(x => x.ProductID == detailsToDelete.ProductID).FirstOrDefault();
+                        inventoryItem.Quantity += detailsToDelete.Quantity;
+                        if (detailsToDelete.IsDone == false)
+                        {
+                            inventoryItem.QuantityForOrders += detailsToDelete.Quantity * (-1);
+                        }
+                        context.OrderDetails.Remove(detailsToDelete);                        
+                    }
+                
+                    var orderToDelete = context.Order.Where(x => x.OrderID == order.OrderID).FirstOrDefault();
+                    context.Order.Remove(orderToDelete);
+                }
 
                 if (entity != null)
                 {

@@ -60,15 +60,19 @@ namespace Jim.Forms
 
         private void barButtonDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var row = gridView.GetFocusedRow() as MaterialModel;
-            if (row.MaterialID != null && row.MaterialID != Guid.Empty)
+            DialogResult res = XtraMessageBox.Show(String.Format("Σίγουρα θέλετε να διαγραφεί;"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (res == DialogResult.Yes)
             {
-                using (var repository = new MaterialRepository())
+                var row = gridView.GetFocusedRow() as MaterialModel;
+                if (row.MaterialID != null && row.MaterialID != Guid.Empty)
                 {
-                    repository.Delete(row.MaterialID);
+                    using (var repository = new MaterialRepository())
+                    {
+                        repository.Delete(row.MaterialID);
+                    }
                 }
+                this.gridControl.EmbeddedNavigator.Buttons.DoClick(this.gridControl.EmbeddedNavigator.Buttons.Remove);
             }
-            this.gridControl.EmbeddedNavigator.Buttons.DoClick(this.gridControl.EmbeddedNavigator.Buttons.Remove);
         }
 
         private void gridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
