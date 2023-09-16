@@ -179,7 +179,8 @@ namespace BAL.Repository
                 Comments = order.Comments,
                 TimeSpent = order.TimeSpent,
                 IsPaid = order.IsPaid,
-                ActualProfit = order.ActualProfit
+                ActualProfit = order.ActualProfit,
+                Profit = order.Profit
             };
 
             Context.Order.Add(entity);
